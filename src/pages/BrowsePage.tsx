@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Search, SlidersHorizontal, X } from 'lucide-react';
+import { Search, SlidersHorizontal } from 'lucide-react';
 import { listingsApi, ListingsParams } from '../services/api';
 import type { Listing, Pagination } from '../types';
 import ListingCard from '../components/listings/ListingCard';
@@ -34,7 +34,13 @@ export default function BrowsePage() {
       try {
         const params: ListingsParams = {
           q: searchParams.get('q') || undefined,
-          ...filters,
+          category: filters.category,
+          area: filters.area,
+          minPrice: filters.minPrice ? Number(filters.minPrice) : undefined,
+          maxPrice: filters.maxPrice ? Number(filters.maxPrice) : undefined,
+          days: filters.days,
+          skillLevel: filters.skillLevel,
+          commitmentType: filters.commitmentType,
           sort,
           page,
           limit: 12,
@@ -65,7 +71,7 @@ export default function BrowsePage() {
     setSearchParams(newParams);
   };
 
-  const handleFilterChange = (newFilters: typeof filters) => {
+  const handleFilterChange = (newFilters: Partial<typeof filters>) => {
     const newParams = new URLSearchParams(searchParams);
 
     // Update filter params

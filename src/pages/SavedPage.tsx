@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Heart, Search } from 'lucide-react';
+import { Heart } from 'lucide-react';
 import { listingsApi } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import type { Listing } from '../types';

@@ -5,9 +5,6 @@ import {
   Users,
   Grid3X3,
   Clock,
-  TrendingUp,
-  CheckCircle,
-  XCircle,
 } from 'lucide-react';
 import { adminApi } from '../../services/adminApi';
 import type { DashboardData } from '../../types';
